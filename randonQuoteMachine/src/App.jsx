@@ -18,10 +18,21 @@ const getQuotes = async () => {
 }
 
 function App() {
-
+  
   const [quotes, setQuotes] = useState([])
-  useEffect(() => {
-    getQuotes().then(e => console.log(e))
+
+  //const [quote, setQuote] = useState({})
+
+  const quote  = useMemo(() => {
+
+    /* .then(e => {
+      setQuotes(e)
+      const random = Math.floor(Math.random() * (Math.floor(quotes.length) - 0 + 1)) + 0
+       data = quotes[0]
+    }) */
+
+    return getQuotes().then(e => e)
+    
   });
 
   
@@ -30,17 +41,18 @@ function App() {
       <main className="main d-flex justify-content-center align-items-center">
       <Card style={{ width: '30rem' }}>
         <Card.Body>
-          {quotes.map((e,i) => <p key={i}>e</p>)}
           <Card.Text>
-            <blockquote >
+            
+            <div>
               <FontAwesomeIcon icon={faQuoteLeft} />
               <span class="px-2 p-5">
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+              {
+                console.log(quote)
+              }
               </span>
               
               <FontAwesomeIcon icon={faQuoteRight} />
-            </blockquote>
+            </div>
           </Card.Text>
           <Card.Link className="btn btn-primary" href="#"><FontAwesomeIcon icon={faTwitter} /></Card.Link>
           <Card.Link className="btn btn-primary" href="#"><FontAwesomeIcon icon={faTumblr} /></Card.Link>
