@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faTumblr } from "@fortawesome/free-brands-svg-icons"
-import {faQuoteLeft, faQuoteRight, faArrowsRotate} from "@fortawesome/free-solid-svg-icons"
-
-
+import {faArrowsRotate, faAt} from "@fortawesome/free-solid-svg-icons"
 import { Card } from 'react-bootstrap'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import axios from 'axios'
@@ -44,39 +40,45 @@ function App() {
   return (
     <div className="App">
       <main className="main d-flex justify-content-center align-items-center">
-      <Card style={{ width: '30rem' }} id="quote-box">
-        <Card.Body>
-          <Card.Text>  
-            <div>
-              { quote &&  
-                <>
-                  <FontAwesomeIcon icon={faQuoteLeft} />
-                  <span id="text" className="px-2 p-2">{quote.quote}</span>
-                  <FontAwesomeIcon icon={faQuoteRight} />
-                  <p id="author" className="px-0 p-2"> ~{quote.author}</p>
-                </>
-              }
+        <Card style={{ width: '30rem' }} id="quote-box" className="shadow-lg p-4 mb-5 bg-body rounded-0">
+          <Card.Body>
+            <blockquote class="blockquote mb-0">
+              <p><i>{ quote && quote.quote}</i></p>
+              <footer class="blockquote-footer">
+                <cite title="Source Title">{/* <FontAwesomeIcon icon={faTilde} /> */} {quote && quote.author}</cite>
+              </footer>
+            </blockquote>
+            
+            <div class="my-2 border border-light bg-light"></div>
+          
+            <div className="text-end">
+              <Card.Link class="text-dark text-decoration-none " href="https://www.linkedin.com/in/anibal-antonio/"
+              id="author"
+              target="_blank"> By <FontAwesomeIcon icon={faAt} />anibal.antonio
+              </Card.Link>
             </div>
-          </Card.Text>
-          <Card.Link className="btn btn-primary" id="tweet-quote" href={quote &&
-            `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text= 
-            encodeURIComponent( "${quote.quote}"${quote.author})`
-          }
-          target="_blank">
-            <FontAwesomeIcon icon={faTwitter} />
-          </Card.Link>
-          <Card.Link className="btn btn-primary" href={quote && 
-          `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=
-          ${encodeURIComponent(quote.quote)} 
-          &content= ${encodeURIComponent(quote.author)}
-          &canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`
-          } 
-          target="_blank">
-            <FontAwesomeIcon icon={faTumblr} />
-          </Card.Link>
-          <Card.Link className="btn btn-primary" href="#" id="new-quote" onClick={handleQuote}><FontAwesomeIcon icon={faArrowsRotate} /></Card.Link>
-        </Card.Body>
-      </Card>
+            
+          </Card.Body>
+          <div id="quote-buttons" class="btn-group" role="group">
+            <Card.Link className="btn btn-primary" href="#" id="new-quote" onClick={handleQuote}><FontAwesomeIcon icon={faArrowsRotate} /></Card.Link>
+            <Card.Link className="btn btn-primary" id="tweet-quote" href={quote &&
+              `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text= 
+              encodeURIComponent( "${quote.quote}"${quote.author})`
+            }
+            target="_blank">
+              <FontAwesomeIcon icon={faTwitter} />
+            </Card.Link>
+            <Card.Link className="btn btn-primary" href={quote && 
+            `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=
+            ${encodeURIComponent(quote.quote)} 
+            &content= ${encodeURIComponent(quote.author)}
+            &canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`
+            } 
+            target="_blank">
+              <FontAwesomeIcon icon={faTumblr} />
+            </Card.Link>
+            </div>
+        </Card>
       </main> 
     </div>
   )
