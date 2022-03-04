@@ -42,24 +42,24 @@ function App() {
       <main className="main d-flex justify-content-center align-items-center">
         <Card style={{ width: '30rem' }} id="quote-box" className="shadow-lg p-4 mb-5 bg-body rounded-0">
           <Card.Body>
-            <blockquote class="blockquote mb-0">
+            <blockquote className="blockquote mb-0">
               <p><i>{ quote && quote.quote}</i></p>
-              <footer class="blockquote-footer">
+              <footer className="blockquote-footer">
                 <cite title="Source Title">{/* <FontAwesomeIcon icon={faTilde} /> */} {quote && quote.author}</cite>
               </footer>
             </blockquote>
             
-            <div class="my-2 border border-light bg-light"></div>
+            <div className="my-2 border border-light bg-light"></div>
           
             <div className="text-end">
-              <Card.Link class="text-dark text-decoration-none " href="https://www.linkedin.com/in/anibal-antonio/"
+              <Card.Link className="text-dark text-decoration-none " href="https://www.linkedin.com/in/anibal-antonio/"
               id="author"
               target="_blank"> By <FontAwesomeIcon icon={faAt} />anibal.antonio
               </Card.Link>
             </div>
             
           </Card.Body>
-          <div id="quote-buttons" class="btn-group" role="group">
+          <div id="quote-buttons" className="btn-group" role="group">
             <Card.Link className="btn btn-primary" href="#" id="new-quote" onClick={handleQuote}><FontAwesomeIcon icon={faArrowsRotate} /></Card.Link>
             <Card.Link className="btn btn-primary" id="tweet-quote" href={quote &&
               `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text= 
