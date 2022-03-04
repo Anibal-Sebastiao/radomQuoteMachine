@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faTumblr } from "@fortawesome/free-brands-svg-icons"
 import {faQuoteLeft, faQuoteRight, faArrowsRotate, faUserAlt} from "@fortawesome/free-solid-svg-icons"
-/* import {faUserAlt} from '@fortawesome/free-regular-svg-icons' */
+
 
 import { Card } from 'react-bootstrap'
 
@@ -17,18 +17,14 @@ function App() {
   const [quotes, setQuotes] = useState([])
   const [quote, setQuote] = useState([])
   
-  const requestQuote = () => { 
-    axios.get('https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json')
-    .then(_quotes => {
-      setQuotes(_quotes.data.quotes)
-
-      getQuotes()
-
-    }).catch(err => console.log(err)) 
+  const requestQuote = async () => { 
+    const _quotes = await axios.get('https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json')
+    await setQuotes(_quotes.data.quotes)
+    await getQuotes()
   }
 
   const getQuotes = () => {
-      const random = Math.floor(Math.random() * (Math.floor((quotes.length - 1)) - 0 + 1)) + 0
+    const random = Math.floor(Math.random() * (Math.floor((quotes.length - 1)) - 0 + 1)) + 0
     setQuote(quotes[random])
   }
 
@@ -57,7 +53,7 @@ function App() {
                   <FontAwesomeIcon icon={faQuoteLeft} />
                   <span className="px-2 p-2">{quote.quote}</span>
                   <FontAwesomeIcon icon={faQuoteRight} />
-                  <p className="px-0 p-2"><FontAwesomeIcon icon={faUserAlt} /> ~{quote.author}</p>
+                  <p className="px-0 p-2">{/* <FontAwesomeIcon icon={faUserAlt} /> */} ~{quote.author}</p>
                 </>
               }
             </div>
