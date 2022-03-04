@@ -43,9 +43,9 @@ function App() {
         <Card style={{ width: '30rem' }} id="quote-box" className="shadow-lg p-4 mb-5 bg-body rounded-0">
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <p><i>{ quote && quote.quote}</i></p>
-              <footer className="blockquote-footer">
-                <cite title="Source Title">{/* <FontAwesomeIcon icon={faTilde} /> */} {quote && quote.author}</cite>
+              <p id="text"><i>{ quote && quote.quote}</i></p>
+              <footer id="quote-author" className="blockquote-footer">
+                <cite title="Source Title">{quote && quote.author}</cite>
               </footer>
             </blockquote>
             
