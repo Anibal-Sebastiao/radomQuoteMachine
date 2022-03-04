@@ -44,8 +44,8 @@ function App() {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p id="text"><i>{ quote && quote.quote}</i></p>
-              <footer id="author" className="blockquote-footer">
-                <cite title="Quote Author">{quote && quote.author}</cite>
+              <footer className="blockquote-footer">
+                <cite id="author" title="Quote Author">{quote && quote.author}</cite>
               </footer>
             </blockquote>
             
