@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faTumblr } from "@fortawesome/free-brands-svg-icons"
-import {faQuoteLeft, faQuoteRight, faArrowsRotate, faUserAlt} from "@fortawesome/free-solid-svg-icons"
+import {faQuoteLeft, faQuoteRight, faArrowsRotate} from "@fortawesome/free-solid-svg-icons"
 
 
 import { Card } from 'react-bootstrap'
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     requestQuote()
-  }, [])
+  }, quote)
   
  
 
@@ -44,23 +44,37 @@ function App() {
   return (
     <div className="App">
       <main className="main d-flex justify-content-center align-items-center">
-      <Card style={{ width: '30rem' }}>
+      <Card style={{ width: '30rem' }} id="quote-box">
         <Card.Body>
           <Card.Text>  
             <div>
               { quote &&  
                 <>
                   <FontAwesomeIcon icon={faQuoteLeft} />
-                  <span className="px-2 p-2">{quote.quote}</span>
+                  <span id="text" className="px-2 p-2">{quote.quote}</span>
                   <FontAwesomeIcon icon={faQuoteRight} />
-                  <p className="px-0 p-2">{/* <FontAwesomeIcon icon={faUserAlt} /> */} ~{quote.author}</p>
+                  <p id="author" className="px-0 p-2"> ~{quote.author}</p>
                 </>
               }
             </div>
           </Card.Text>
-          <Card.Link className="btn btn-primary" href="#"><FontAwesomeIcon icon={faTwitter} /></Card.Link>
-          <Card.Link className="btn btn-primary" href="#"><FontAwesomeIcon icon={faTumblr} /></Card.Link>
-          <Card.Link className="btn btn-primary" href="#" onClick={handleQuote}><FontAwesomeIcon icon={faArrowsRotate} /></Card.Link>
+          <Card.Link className="btn btn-primary" id="tweet-quote" href={quote &&
+            `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text= 
+            encodeURIComponent( "${quote.quote}"${quote.author})`
+          }
+          target="_blank">
+            <FontAwesomeIcon icon={faTwitter} />
+          </Card.Link>
+          <Card.Link className="btn btn-primary" href={quote && 
+          `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=
+          ${encodeURIComponent(quote.quote)} 
+          &content= ${encodeURIComponent(quote.author)}
+          &canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`
+          } 
+          target="_blank">
+            <FontAwesomeIcon icon={faTumblr} />
+          </Card.Link>
+          <Card.Link className="btn btn-primary" href="#" id="new-quote" onClick={handleQuote}><FontAwesomeIcon icon={faArrowsRotate} /></Card.Link>
         </Card.Body>
       </Card>
       </main> 
