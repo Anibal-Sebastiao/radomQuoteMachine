@@ -53,7 +53,6 @@ function App() {
           
             <div className="text-end">
               <Card.Link className="text-dark text-decoration-none " href="https://www.linkedin.com/in/anibal-antonio/"
-              id="author"
               target="_blank"> By <FontAwesomeIcon icon={faAt} />anibal.antonio
               </Card.Link>
             </div>
